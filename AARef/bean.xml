@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="
+			http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+         	http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+	<bean id="duke"
+			class="com.dips.intent.Juggler"/>
+	<bean id="duk"
+			class="com.dips.intent.Juggler">
+			<constructor-arg value="15"/></bean>
+	<bean id="Sonnet29"
+			class="com.dips.intent.Sonnet29"/>
+	<bean id="poeticDuke"
+			class="com.dips.intent.PoeticJuggler">
+			<constructor-arg value="15"/>
+			<constructor-arg ref="Sonnet29"/>
+	</bean>
+	
+	<bean id="theStage"
+			class="com.dips.intent.Stage"
+				factory-method="getInstance">		
+	</bean>
+	
+	<bean id="auditorium"
+			class="com.dips.intent.Auditorium"
+				init-method="TurnOnLights"
+				destroy-method="TurnOffLights">
+	</bean>
+	
+	<bean id="saxfone"
+			class="com.dips.intent.saxfone">
+	</bean>
+	<bean id="gitar"
+			class="com.dips.intent.Gitar">
+	</bean>
+	<bean id="Instrumentalist"
+			class="com.dips.intent.Instrumentalist">
+			<property name="song" value="Bell"></property>
+			<property name="instrument">
+			<bean class="com.dips.intent.saxfone"/>
+			</property>
+	</bean>
+	
+	
+	<bean id="single"
+			class="com.dips.intent.NotSingle" scope="prototype" factory-method="getInstance"/>
+</beans>
